@@ -745,49 +745,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun useReplenishPotion(sessionId: String, petItemId: String) {
         val actions = clients[sessionId]?.actions ?: return
         val session = _state.value.sessions.find { it.id == sessionId } ?: return
-
         val potion = session.inventory.tools.find { it.toolId == "ReplenishPotion" }
-        val potionCount = potion?.quantity ?: 0
-        if (potionCount <= 0) return
-
-        val inventoryIndex = potion?.inventoryIndex ?: -1
-        if (inventoryIndex < 0) {
-            AppLog.w("PetHunger", "ReplenishPotion not found in inventory")
-            return
-        }
-
-        AppLog.d("PetHunger", "Using ReplenishPotion on pet: $petItemId (inventory index: $inventoryIndex)")
-
-        // Select item first (equip), then use on pet
-        actions.setSelectedItem(inventoryIndex)
-        viewModelScope.launch {
-            delay(300) // Wait for server to process select
-            actions.useItemOnPet(petItemId = petItemId, itemId = "ReplenishPotion")
-            AppLog.d("PetHunger", "ReplenishPotion action sent")
-        }
+        if ((potion?.quantity ?: 0) <= 0) return
+        actions.replenishPotion(petItemId)
     }
 
     fun useXpPotion(sessionId: String, petItemId: String) {
         val actions = clients[sessionId]?.actions ?: return
         val session = _state.value.sessions.find { it.id == sessionId } ?: return
-
         val potion = session.inventory.tools.find { it.toolId == "XPPotion" }
-        val potionCount = potion?.quantity ?: 0
-        if (potionCount <= 0) return
-
-        val inventoryIndex = potion?.inventoryIndex ?: -1
-        if (inventoryIndex < 0) {
-            AppLog.w("PetHunger", "XPPotion not found in inventory")
-            return
-        }
-
-        // Select item first (equip), then use on pet
-        actions.setSelectedItem(inventoryIndex)
-        viewModelScope.launch {
-            delay(300)
-            actions.useItemOnPet(petItemId = petItemId, itemId = "XPPotion")
-            AppLog.d("PetHunger", "XPPotion action sent")
-        }
+        if ((potion?.quantity ?: 0) <= 0) return
+        actions.xpPotion(petItemId)
     }
 
     // ---- Pet swap / equip / unequip ----

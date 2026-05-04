@@ -189,8 +189,11 @@ class GameActions(private val sendFn: (String) -> Unit) {
     fun feedPet(petItemId: String, cropItemId: String) =
         game("FeedPet", obj("petItemId" to JsonPrimitive(petItemId), "cropItemId" to JsonPrimitive(cropItemId)))
 
-    fun useItemOnPet(petItemId: String, itemId: String) =
-        game("UseItem", obj("petItemId" to JsonPrimitive(petItemId), "itemId" to JsonPrimitive(itemId)))
+    fun replenishPotion(petItemId: String) =
+        game("ReplenishPotion", obj("petItemId" to JsonPrimitive(petItemId)))
+
+    fun xpPotion(petItemId: String) =
+        game("XPPotion", obj("petItemId" to JsonPrimitive(petItemId)))
 
     fun sellPet(itemId: String) =
         game("SellPet", obj("itemId" to JsonPrimitive(itemId)))
