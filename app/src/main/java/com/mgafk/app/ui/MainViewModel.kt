@@ -759,7 +759,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         AppLog.d("PetHunger", "Using ReplenishPotion on pet: $petItemId (inventory index: $inventoryIndex)")
 
         // Select item first (equip), then use on pet
-        actions.selectInventoryItem(inventoryIndex)
+        actions.setSelectedItem(inventoryIndex)
         viewModelScope.launch {
             delay(300) // Wait for server to process select
             actions.useItemOnPet(petItemId = petItemId, itemId = "ReplenishPotion")
@@ -782,7 +782,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         // Select item first (equip), then use on pet
-        actions.selectInventoryItem(inventoryIndex)
+        actions.setSelectedItem(inventoryIndex)
         viewModelScope.launch {
             delay(300)
             actions.useItemOnPet(petItemId = petItemId, itemId = "XPPotion")
