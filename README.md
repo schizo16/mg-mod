@@ -207,6 +207,9 @@ The debug APK will be in `app/build/outputs/apk/debug/`.
 
 ## Credits
 
+This project is a mod based on the original app by **Ariedam64**:
+- Original project: [mg-afk-android](https://github.com/Ariedam64/mg-afk-android) by [Ariedam64](https://github.com/Ariedam64)
+
 - WebSocket message parsing and actions are based on [MG-Websocket-Helper](https://github.com/Ariedam64/MG-Websocket-Helper).
 - Sprites, composed mutation sprites and game data are fetched from the unofficial game API: [Magic-Garden-API](https://github.com/Ariedam64/Magic-Garden-API).
 - Public room browsing uses the [Aries Mod API](https://github.com/Ariedam64/mg-api-front-ariesMod).
