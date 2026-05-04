@@ -245,7 +245,10 @@ object MgApi {
     }
 
     /** Look up pet entry by species id. */
-    fun findPet(speciesId: String): GameEntry? = getPets()[speciesId]
+    fun findPet(speciesId: String): GameEntry? {
+        getPets()[speciesId]?.let { return it }
+        return getPets().entries.find { it.key.equals(speciesId, ignoreCase = true) }?.value
+    }
 
     /** Look up a full GameEntry for an item/seed/tool/egg/decor id. */
     fun findItem(itemId: String): GameEntry? {

@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Get-Command *)",
-      "PowerShell($git = \"C:\\\\Program Files\\\\Git\\\\cmd\\\\git.exe\"; cd \"D:\\\\MGAFKmod\\\\mg-afk-android-main\\\\mg-afk-android-main\"; & $git init; & $git add .; & $git commit -m \"Initial commit\"; & $git branch -M main)"
-    ]
-  }
-}

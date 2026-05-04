@@ -718,11 +718,11 @@ private fun FeedPetPickerDialog(
             val item = MgApi.findItem(dietId)
             item?.name?.removeSuffix(" Seed")
         }
-        (diet + mapped).toSet()
+        (diet + mapped).map { it.lowercase() }.toSet()
     }
     val compatible = remember(produce, acceptableSpecies, apiReady) {
         if (acceptableSpecies.isEmpty()) emptyList()
-        else produce.filter { it.species in acceptableSpecies }
+        else produce.filter { it.species.lowercase() in acceptableSpecies }
     }
     var selected by remember { mutableStateOf(setOf<String>()) }
 

@@ -169,8 +169,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val mapped = diet.mapNotNull { dietId ->
                     MgApi.findItem(dietId)?.name?.removeSuffix(" Seed")
                 }
-                val acceptableSpecies = (diet + mapped).toSet()
-                val invItems = inv.filter { it.species in acceptableSpecies }
+                val acceptableSpeciesLower = (diet + mapped).map { it.lowercase() }.toSet()
+                val invItems = inv.filter { it.species.lowercase() in acceptableSpeciesLower }
 
                 if (invItems.isEmpty()) {
                     return
